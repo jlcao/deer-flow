@@ -162,6 +162,14 @@ class AppConfig(BaseModel):
         extensions_config = ExtensionsConfig.from_file()
         config_data["extensions"] = extensions_config.model_dump()
 
+        # Ensure list fields are properly initialized
+        if "models" not in config_data or config_data["models"] is None:
+            config_data["models"] = []
+        if "tools" not in config_data or config_data["tools"] is None:
+            config_data["tools"] = []
+        if "tool_groups" not in config_data or config_data["tool_groups"] is None:
+            config_data["tool_groups"] = []
+
         result = cls.model_validate(config_data)
         return result
 

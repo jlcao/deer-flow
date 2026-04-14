@@ -1,3 +1,5 @@
+export const dynamic = "force-static";
+
 import type { NextRequest } from "next/server";
 
 const BACKEND_BASE_URL =
@@ -52,4 +54,12 @@ export async function PATCH(
   { params }: { params: Promise<{ path: string[] }> },
 ) {
   return proxyRequest(request, `/api/memory/${(await params).path.join("/")}`);
+}
+
+export function generateStaticParams() {
+  // 生成一些默认的静态参数
+  return [
+    { path: [] },
+    { path: ["test"] }
+  ];
 }

@@ -1,3 +1,5 @@
+export const dynamic = "force-static";
+
 import type { NextRequest } from "next/server";
 
 const BACKEND_BASE_URL =
